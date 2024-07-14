@@ -19,68 +19,68 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int average_red = 0;
             int average_green = 0;
             int average_blue = 0;
-            int average = 1;
-            if (image[i - 1][j - 1] != NULL)
+            int average = 0;
+            if (i - 1 >= 0 && j - 1 >= 0)
             {
                 average++;
                 average_red += copy[i - 1][j - 1].rgbtRed;
                 average_green += copy[i - 1][j - 1].rgbtGreen;
                 average_blue += copy[i - 1][j - 1].rgbtBlue;
             }
-            if (image[i - 1][j] != NULL)
+            if (i - 1 >= 0)
             {
                 average++;
                 average_red += copy[i - 1][j].rgbtRed;
                 average_green += copy[i - 1][j].rgbtGreen;
                 average_blue += copy[i - 1][j].rgbtBlue;
             }
-            if (image[i - 1][j + 1] != NULL)
+            if (i - 1 >= 0 && j + 1 < width)
             {
                 average++;
                 average_red += copy[i - 1][j + 1].rgbtRed;
                 average_green += copy[i - 1][j + 1].rgbtGreen;
                 average_blue += copy[i - 1][j + 1].rgbtBlue;
             }
-            if (image[i][j - 1] != NULL)
+            if (j - 1 >= 0)
             {
                 average++;
                 average_red += copy[i][j - 1].rgbtRed;
                 average_green += copy[i][j - 1].rgbtGreen;
                 average_blue += copy[i][j - 1].rgbtBlue;
             }
-            if (image[i][j + 1] != NULL)
+            if (j + 1 < width)
             {
                 average++;
                 average_red += copy[i][j + 1].rgbtRed;
                 average_green += copy[i][j + 1].rgbtGreen;
                 average_blue += copy[i][j + 1].rgbtBlue;
             }
-            if (image[i + 1][j  - 1] != NULL)
+            if (i + 1 < height && j - 1 >= 0)
             {
                 average++;
                 average_red += copy[i + 1][j  - 1].rgbtRed;
                 average_green += copy[i + 1][j - 1].rgbtGreen;
                 average_blue += copy[i + 1][j - 1].rgbtBlue;
             }
-            if (image[i + 1][j + width] != NULL)
+            if (i + 1 < height)
             {
                 average++;
                 average_red += copy[i + 1][j].rgbtRed;
                 average_green += copy[i + 1][j].rgbtGreen;
                 average_blue += copy[i+ 1][j].rgbtBlue;
             }
-            if (image[i + 1][j + 1] != NULL)
+            if (i + 1 < height && j + 1 < width)
             {
                 average++;
                 average_red += copy[i + 1][j + 1].rgbtRed;
                 average_green += copy[i + 1][j + 1].rgbtGreen;
                 average_blue += copy[i + 1][j + 1].rgbtBlue;
             }
-            average_red = round((float) average_red / average);
-            average_green = round((float) average_green / average);
-            average_blue = round((float) average_blue / average);
+            average_red =  average_red / average;
+            average_green = average_green / average;
+            average_blue =  average_blue / average;
             image[i][j].rgbtRed = average_red;
-            image[i][j].rgbtGreen = average_breen;
+            image[i][j].rgbtGreen = average_green;
             image[i][j].rgbtBlue = average_blue;
         }
     }
